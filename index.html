@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpareFind - Electronic Spare Parts</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="top-header">
+
+        <div class="logo">
+            <span>Spare</span><b>Find</b>
+        </div>
+
+        <div class="location">
+            <i class="fa-solid fa-location-dot"></i>
+            <div>
+                <small>Deliver to</small>
+                <strong>India</strong>
+            </div>
+        </div>
+
+        <form class="search-box" id="searchForm">
+            <select id="categorySelect" aria-label="Search category">
+                <option value="all">All categories</option>
+                <option value="tv">TV Parts</option>
+                <option value="mobile">Mobile Parts</option>
+                <option value="laptop">Laptop Parts</option>
+            </select>
+
+            <input id="searchInput" type="search" placeholder="Search parts, brands, or model numbers..." aria-label="Search spare parts">
+
+            <button type="submit" aria-label="Search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </form>
+
+        <div class="language">🇮🇳 EN</div>
+
+        <div class="account">
+            <small>Hello, Sign in</small>
+            <strong>Account & Lists</strong>
+        </div>
+
+        <div class="requests">
+            <small>My</small>
+            <strong>Requests</strong>
+        </div>
+
+        <button class="cart" id="cartButton" type="button" aria-label="Shopping cart, 0 items">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="cartCount">0</span>
+            Cart
+        </button>
+
+    </header>
+
+
+    <!-- NAVIGATION -->
+    <nav class="nav-bar">
+
+        <div class="nav-item">
+            <i class="fa-solid fa-bars"></i>
+            All
+        </div>
+
+        <div>TV Parts</div>
+        <div>Mobile Parts</div>
+        <div>Laptop Parts</div>
+        <div>Refrigerator Parts</div>
+        <div>Repair Services</div>
+        <div>Nearby Suppliers</div>
+        <div>Upload Part Photo</div>
+
+        <div class="nav-right">
+            Find Your Part Easily
+        </div>
+
+    </nav>
+
+
+    <section class="photo-hero" aria-labelledby="photoHeroTitle">
+        <div class="photo-hero-main">
+            <div class="photo-hero-copy">
+                <span class="eyebrow"><i class="fa-solid fa-wand-magic-sparkles"></i> PHOTO-POWERED PART FINDER</span>
+                <h1 id="photoHeroTitle">Find the right part.<br><em>Start with a photo.</em></h1>
+                <p>Skip the model-number hunt. Show us the part and find compatible options from suppliers across India.</p>
+                <div class="photo-hero-actions">
+                    <input id="photoInput" type="file" accept="image/*" hidden>
+                    <button id="uploadButton" class="photo-upload-button" type="button">
+                        <i class="fa-solid fa-camera"></i> Identify a part by photo
+                    </button>
+                    <span>JPG or PNG · No part number needed</span>
+                </div>
+                <a href="#catalog" class="welcome-link">Or browse parts by device <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <div class="photo-hero-visual" aria-hidden="true">
+                <div class="photo-demo-card">
+                    <div class="photo-demo-image">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=85" alt="">
+                        <span class="scan-corners"></span>
+                        <span class="photo-demo-label"><i class="fa-solid fa-crosshairs"></i> YOUR PART PHOTO</span>
+                    </div>
+                    <div class="photo-demo-caption">
+                        <span><small>START HERE</small><strong>One clear photo</strong></span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                        <span><small>THEN FIND</small><strong>Compatible parts</strong></span>
+                    </div>
+                </div>
+                <span class="visual-note"><i class="fa-solid fa-location-dot"></i> Compare local suppliers</span>
+            </div>
+        </div>
+        <div class="photo-hero-steps" aria-label="How photo part finding works">
+            <span><b>01</b> Take a photo of the part</span>
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            <span><b>02</b> Find compatible options</span>
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            <span><b>03</b> Choose a nearby supplier</span>
+        </div>
+    </section>
+
+    <section class="damage-finder" id="damageFinder" aria-labelledby="damageFinderTitle">
+        <div class="damage-finder-heading">
+            <span class="damage-demo-label"><i class="fa-solid fa-flask"></i> DEMO DATA · RULE-BASED SUGGESTIONS</span>
+            <h2 id="damageFinderTitle">Smart Problem Diagnosis</h2>
+            <p>Answer a few questions about your device to explore possible causes and matching demo parts.</p>
+            <div class="damage-path-actions" aria-label="Choose a service">
+                <a class="damage-parts-entry" href="#catalog"><i class="fa-solid fa-magnifying-glass"></i> Find Spare Parts</a>
+                <button class="technician-request-button book-technician-entry" type="button">
+                    <i class="fa-solid fa-calendar-check"></i> Book a Technician
+                </button>
+            </div>
+        </div>
+
+        <form class="damage-check-form" id="damageCheckForm">
+            <label>
+                Device
+                <select id="damageDevice" required>
+                    <option value="samsung-tv">Samsung TV</option>
+                </select>
+            </label>
+
+            <label>
+                What is the problem?
+                <select id="damageProblem" required>
+                    <option value="">Choose a symptom</option>
+                    <option value="no-power">TV not turning on</option>
+                    <option value="blank-screen">No picture or blank screen</option>
+                    <option value="no-sound">No sound</option>
+                    <option value="display">Display problem</option>
+                    <option value="restarting">TV restarting repeatedly</option>
+                    <option value="other">Other problem</option>
+                </select>
+            </label>
+
+            <label>
+                TV model number <span class="optional-label">(optional)</span>
+                <input id="damageModel" type="text" placeholder="e.g. UA43T5350">
+            </label>
+
+            <div class="damage-photo-field">
+                <span class="damage-field-label">Photo of your TV or suspected part <span class="optional-label">(optional)</span></span>
+                <input id="damagePhotoInput" type="file" accept="image/*" hidden>
+                <button id="damagePhotoButton" class="damage-photo-button" type="button">
+                    <i class="fa-solid fa-camera"></i> Choose an image
+                </button>
+                <span id="damagePhotoName" class="damage-photo-name">No image selected</span>
+                <img id="damagePhotoPreview" class="damage-photo-preview" alt="Selected device or part preview" hidden>
+            </div>
+
+            <div id="followUpQuestions" class="follow-up-questions" hidden></div>
+
+            <button class="damage-submit-button" type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i> Get Diagnosis Suggestions
+            </button>
+        </form>
+
+        <div class="diagnosis-notice">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            These rule-based demo suggestions are possible causes only, not confirmed diagnoses. A qualified technician may need to inspect your device. Uploaded photos are previewed in your browser and are not analyzed.
+        </div>
+
+        <section class="damage-results" id="damageResults" aria-live="polite" hidden>
+            <div class="damage-results-heading">
+                <div>
+                    <span class="damage-demo-label">RULE-BASED DEMO RESULTS</span>
+                    <h3>Diagnosis summary</h3>
+                    <p id="diagnosisContext" class="diagnosis-context"></p>
+                    <p id="diagnosisAnswerSummary" class="diagnosis-context"></p>
+                </div>
+            </div>
+            <h4 class="diagnosis-section-title">Possible causes</h4>
+            <ul id="damageCauseList" class="damage-cause-list"></ul>
+            <p id="diagnosisNextSteps" class="diagnosis-next-steps"></p>
+            <h4 class="diagnosis-section-title">Related demo spare parts</h4>
+            <div id="damageSuggestionList" class="damage-suggestion-list"></div>
+            <div class="damage-next-actions">
+                <p>Need help confirming the issue? Send a demo service request to a technician.</p>
+                <button id="requestTechnicianButton" class="technician-request-button book-technician-entry" type="button">
+                    <i class="fa-solid fa-calendar-check"></i> Book a Technician
+                </button>
+            </div>
+        </section>
+
+        <form class="demo-request-form" id="deliveryRequestForm" hidden>
+            <div class="technician-form-heading">
+                <h3>Request Demo Delivery</h3>
+                <p>Demo request only — no order or delivery is sent to a supplier.</p>
+            </div>
+            <p class="delivery-part-label">Selected part: <strong id="deliveryPartName"></strong></p>
+            <div class="technician-form-fields">
+                <label>
+                    Your name
+                    <input id="deliveryName" name="name" type="text" autocomplete="name" required>
+                </label>
+                <label>
+                    Phone number
+                    <input id="deliveryPhone" name="phone" type="tel" autocomplete="tel" required>
+                </label>
+                <label>
+                    City
+                    <input id="deliveryCity" name="city" type="text" autocomplete="address-level2" required>
+                </label>
+            </div>
+            <label class="technician-notes-label">
+                Delivery address
+                <textarea id="deliveryAddress" name="address" rows="3" autocomplete="street-address" required></textarea>
+            </label>
+            <div class="technician-form-actions">
+                <button class="damage-submit-button" type="submit">Submit demo delivery request</button>
+                <button id="cancelDeliveryButton" class="damage-cancel-button" type="button">Cancel</button>
+            </div>
+            <p id="deliverySuccess" class="technician-success" role="status" aria-live="polite" hidden></p>
+        </form>
+
+        <form class="technician-form" id="technicianForm" hidden>
+            <div class="technician-form-heading">
+                <span class="damage-demo-label">DEMO BOOKING · NO REAL TECHNICIAN IS DISPATCHED</span>
+                <h3>Book a Technician</h3>
+                <p>Request diagnosis only or diagnosis and repair. You do not need to identify or buy a part first.</p>
+            </div>
+            <div class="technician-workflow">
+                <strong>What to expect:</strong> A technician would inspect the device, identify the likely fault, explain the estimated repair cost, and ask for your approval before proceeding. Parts are optional: search for them through E-Part or discuss suitable options with the technician. This prototype does not connect to real technicians.
+            </div>
+            <div class="technician-form-fields">
+                <label>
+                    Customer name
+                    <input id="technicianName" name="name" type="text" autocomplete="name" required>
+                </label>
+                <label>
+                    Contact number
+                    <input id="technicianPhone" name="phone" type="tel" autocomplete="tel" required>
+                </label>
+                <label>
+                    Device type
+                    <select id="technicianDeviceType" name="deviceType" required>
+                        <option value="">Choose a device</option>
+                        <option value="TV">TV</option>
+                        <option value="Mobile phone">Mobile phone</option>
+                        <option value="Laptop">Laptop</option>
+                        <option value="Refrigerator">Refrigerator</option>
+                        <option value="Other electronic device">Other electronic device</option>
+                    </select>
+                </label>
+                <label>
+                    Device brand and model
+                    <input id="technicianBrandModel" name="brandModel" type="text" placeholder="e.g. Samsung UA43T5350" required>
+                </label>
+                <label>
+                    Preferred visit date
+                    <input id="technicianVisitDate" name="visitDate" type="date" required>
+                </label>
+                <label>
+                    Preferred visit time
+                    <input id="technicianVisitTime" name="visitTime" type="time" required>
+                </label>
+            </div>
+            <label class="technician-notes-label">
+                Problem description
+                <textarea id="technicianNotes" name="problem" rows="3" placeholder="Describe what is happening with the device" required></textarea>
+            </label>
+            <label class="technician-notes-label">
+                Address or service location
+                <textarea id="technicianAddress" name="address" rows="3" autocomplete="street-address" placeholder="Enter the complete service address or location" required></textarea>
+            </label>
+            <label class="technician-notes-label">
+                Service type
+                <select id="technicianServiceType" name="serviceType" required>
+                    <option value="">Choose a service</option>
+                    <option value="Diagnosis only">Diagnosis only</option>
+                    <option value="Diagnosis and repair">Diagnosis and repair</option>
+                </select>
+            </label>
+            <div class="technician-form-actions">
+                <button class="damage-submit-button" type="submit">Submit Demo Booking Request</button>
+                <button id="cancelTechnicianButton" class="damage-cancel-button" type="button">Cancel</button>
+            </div>
+        </form>
+
+        <section id="bookingConfirmation" class="booking-confirmation" aria-live="polite" hidden>
+            <span class="damage-demo-label">DEMO BOOKING CONFIRMATION</span>
+            <h3>Request received for this demo</h3>
+            <p class="booking-reference">Demo booking reference: <strong id="bookingReference"></strong></p>
+            <dl class="booking-details">
+                <div><dt>Device</dt><dd id="bookingDevice"></dd></div>
+                <div><dt>Problem</dt><dd id="bookingProblem"></dd></div>
+                <div><dt>Requested service</dt><dd id="bookingService"></dd></div>
+                <div><dt>Preferred visit</dt><dd id="bookingVisit"></dd></div>
+                <div><dt>Service location</dt><dd id="bookingLocation"></dd></div>
+            </dl>
+            <p class="booking-status"><strong>Booking status:</strong> Demo request submitted</p>
+            <p class="booking-disclaimer">This is only a prototype confirmation. No real technician has been booked or notified. The demo does not connect to a technician network.</p>
+            <p class="booking-parts-choice">A spare-part purchase through E-Part is not required. If a part is needed, you can search the website separately or discuss suitable options with the technician.</p>
+            <div class="technician-form-actions">
+                <button id="bookAnotherTechnicianButton" class="damage-cancel-button" type="button">Book another technician</button>
+                <button id="bookingFindPartsButton" class="damage-submit-button" type="button">Search Spare Parts Separately</button>
+            </div>
+        </section>
+    </section>
+
+    <!-- MAIN -->
+    <main class="main-container">
+
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <h3>Filter Results</h3>
+
+            <div class="filter-section">
+                <h4>Device</h4>
+
+                <label>
+                    <input type="checkbox" name="device" value="tv"> TV
+                </label>
+
+                <label>
+                    <input type="checkbox" name="device" value="mobile"> Mobile
+                </label>
+
+                <label>
+                    <input type="checkbox" name="device" value="laptop"> Laptop
+                </label>
+
+                <label>
+                    <input type="checkbox" name="device" value="refrigerator"> Refrigerator
+                </label>
+            </div>
+
+
+            <div class="filter-section">
+
+                <h4>Brand</h4>
+
+                <label>
+                    <input type="checkbox" name="brand" value="samsung"> Samsung
+                </label>
+
+                <label>
+                    <input type="checkbox" name="brand" value="lg"> LG
+                </label>
+
+                <label>
+                    <input type="checkbox" name="brand" value="sony"> Sony
+                </label>
+
+                <label>
+                    <input type="checkbox" name="brand" value="redmi"> Redmi
+                </label>
+
+            </div>
+
+
+            <div class="filter-section">
+
+                <h4>Availability</h4>
+
+                <label>
+                    <input type="checkbox" name="availability" value="available"> Available
+                </label>
+
+                <label>
+                    <input type="checkbox" name="availability" value="nearby"> Nearby
+                </label>
+
+            </div>
+
+
+            <div class="filter-section">
+
+                <h4>Price</h4>
+
+                <label>
+                    <input type="radio" name="price" value="under500">
+                    Under ₹500
+                </label>
+
+                <label>
+                    <input type="radio" name="price" value="500to1500">
+                    ₹500 - ₹1,500
+                </label>
+
+                <label>
+                    <input type="radio" name="price" value="1500to5000">
+                    ₹1,500 - ₹5,000
+                </label>
+
+            </div>
+
+
+            <div class="filter-section">
+
+                <h4>Service</h4>
+
+                <label>
+                    <input type="checkbox" name="service" value="part"> Spare Part
+                </label>
+
+                <label>
+                    <input type="checkbox" name="service" value="repair"> Repair Service
+                </label>
+
+            </div>
+
+        </aside>
+
+
+        <!-- CONTENT -->
+        <section class="content" id="catalog">
+
+            <div class="result-header">
+
+                <div>
+                    <h2>Browse parts by device</h2>
+
+                    <p>
+                        Know what you need? Search or filter the catalog below.
+                    </p>
+                </div>
+
+                <select class="sort" id="sortSelect" aria-label="Sort products">
+                    <option value="featured">Sort: Featured</option>
+                    <option value="low">Price: Low to High</option>
+                    <option value="high">Price: High to Low</option>
+                    <option value="rating">Customer rating</option>
+                </select>
+
+            </div>
+
+
+            <!-- PRODUCTS -->
+            <p class="result-count" id="resultCount" aria-live="polite"></p>
+            <div class="products" id="productGrid">
+
+
+                <!-- PRODUCT 1 -->
+                <article class="product-card" id="samsungPowerBoardProduct" data-category="tv" data-brand="samsung" data-price="1200" data-rating="4.5" data-availability="available nearby" data-service="part" data-models="UA43T5350 UA50TU8000">
+
+                    <div class="product-image tv-board">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=85" alt="Close-up of a printed circuit board" loading="lazy">
+                    </div>
+
+                    <div class="product-info">
+
+                        <small>Demo listing · Samsung TV</small>
+
+                        <h3>Samsung TV Power Supply Board</h3>
+
+                        <p class="part-number">
+                            Part No: DEMO-BN44-001
+                        </p>
+
+                        <div class="rating">
+                            ★★★★★ <span>4.5</span>
+                        </div>
+
+                        <p class="availability">
+                            ● Available
+                        </p>
+
+                        <h2>₹1,200</h2>
+
+                        <p class="location-text">📍 Demo supplier: Bengaluru Electronics Hub</p>
+
+                            <button class="primary-btn add-button" type="button">
+                            Add to cart
+                        </button>
+
+                        <button class="secondary-btn supplier-button" type="button">
+                            Find Supplier
+                        </button>
+                        <button class="secondary-btn book-technician-button" type="button">
+                            Book a Technician
+                        </button>
+
+                    </div>
+
+                </article>
+
+                <!-- DEMO TV COMPONENT LISTINGS -->
+                <article class="product-card" id="samsungMainBoardProduct" data-category="tv" data-brand="samsung" data-price="2100" data-rating="4.4" data-availability="available" data-service="part" data-models="UA43T5350 UA50TU8000">
+
+                    <div class="product-image board">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=85" alt="Electronic components on a circuit board" loading="lazy">
+                    </div>
+
+                    <div class="product-info">
+                        <small>Demo listing · Samsung TV</small>
+                        <h3>Samsung TV Main Board</h3>
+                        <p class="part-number">Part No: DEMO-MB-002</p>
+                        <div class="rating">★★★★☆ <span>4.4</span></div>
+                        <p class="availability">● Demo availability</p>
+                        <h2>₹2,100</h2>
+                        <p class="location-text">📍 Demo supplier: Bengaluru Electronics Hub</p>
+                        <button class="primary-btn add-button" type="button">Add to cart</button>
+                        <button class="secondary-btn supplier-button" type="button">Find Supplier</button>
+                        <button class="secondary-btn book-technician-button" type="button">Book a Technician</button>
+                    </div>
+
+                </article>
+
+                <article class="product-card" id="samsungDisplayPanelProduct" data-category="tv" data-brand="samsung" data-price="4800" data-rating="4.1" data-availability="available" data-service="part" data-models="UA43T5350 UA50TU8000">
+
+                    <div class="product-image board">
+                        <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=900&q=85" alt="Television display panel" loading="lazy">
+                    </div>
+
+                    <div class="product-info">
+                        <small>Demo listing · Samsung TV</small>
+                        <h3>Samsung TV Display Panel</h3>
+                        <p class="part-number">Part No: DEMO-PANEL-003</p>
+                        <div class="rating">★★★★☆ <span>4.1</span></div>
+                        <p class="availability">● Demo availability</p>
+                        <h2>₹4,800</h2>
+                        <p class="location-text">📍 Demo supplier: Bengaluru Electronics Hub</p>
+                        <button class="primary-btn add-button" type="button">Add to cart</button>
+                        <button class="secondary-btn supplier-button" type="button">Find Supplier</button>
+                        <button class="secondary-btn book-technician-button" type="button">Book a Technician</button>
+                    </div>
+
+                </article>
+
+
+                <!-- PRODUCT 2 -->
+                <article class="product-card" data-category="mobile" data-brand="redmi" data-price="250" data-rating="4.2" data-availability="available" data-service="part">
+
+                    <div class="product-image mobile-board">
+                        <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=900&q=85" alt="Smartphone with a bright screen" loading="lazy">
+                    </div>
+
+                    <div class="product-info">
+
+                        <small>Mobile Spare Part</small>
+
+                        <h3>Smartphone Charging Connector</h3>
+
+                        <p class="part-number">
+                            Part No: USB-C-001
+                        </p>
+
+                        <div class="rating">
+                            ★★★★☆ <span>4.2</span>
+                        </div>
+
+                        <p class="availability">
+                            ● Available
+                        </p>
+
+                        <h2>₹250</h2>
+
+                        <p class="location-text">
+                            📍 Hyderabad
+                        </p>
+
+                        <button class="primary-btn add-button" type="button">
+                            Add to cart
+                        </button>
+
+                        <button class="secondary-btn supplier-button" type="button">
+                            Find Supplier
+                        </button>
+                        <button class="secondary-btn book-technician-button" type="button">
+                            Book a Technician
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PRODUCT 3 -->
+                <article class="product-card" data-category="laptop" data-brand="lg" data-price="450" data-rating="4.7" data-availability="available nearby" data-service="part">
+
+                    <div class="product-image laptop-board">
+                        <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=85" alt="Laptop computer on a desk" loading="lazy">
+                    </div>
+
+                    <div class="product-info">
+
+                        <small>Laptop Spare Part</small>
+
+                        <h3>Laptop DC Power Jack</h3>
+
+                        <p class="part-number">
+                            Part No: DCJ-204
+                        </p>
+
+                        <div class="rating">
+                            ★★★★★ <span>4.7</span>
+                        </div>
+
+                        <p class="availability">
+                            ● Available
+                        </p>
+
+                        <h2>₹450</h2>
+
+                        <p class="location-text">
+                            📍 Bengaluru
+                        </p>
+
+                        <button class="primary-btn add-button" type="button">
+                            Add to cart
+                        </button>
+
+                        <button class="secondary-btn supplier-button" type="button">
+                            Find Supplier
+                        </button>
+                        <button class="secondary-btn book-technician-button" type="button">
+                            Book a Technician
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PRODUCT 4 -->
+                <article class="product-card" data-category="tv" data-brand="sony" data-price="2100" data-rating="4.3" data-availability="available" data-service="part">
+
+                    <div class="product-image board">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=85" alt="Electronic components on a circuit board" loading="lazy">
+                    </div>
+
+                    <div class="product-info">
+
+                        <small>Electronic Component</small>
+
+                        <h3>LED TV Main Control Board</h3>
+
+                        <p class="part-number">
+                            Part No: MB-2026
+                        </p>
+
+                        <div class="rating">
+                            ★★★★☆ <span>4.3</span>
+                        </div>
+
+                        <p class="availability">
+                            ● Available
+                        </p>
+
+                        <h2>₹2,100</h2>
+
+                        <p class="location-text">
+                            📍 Chennai
+                        </p>
+
+                        <button class="primary-btn add-button" type="button">
+                            Add to cart
+                        </button>
+
+                        <button class="secondary-btn supplier-button" type="button">
+                            Find Supplier
+                        </button>
+                        <button class="secondary-btn book-technician-button" type="button">
+                            Book a Technician
+                        </button>
+
+                    </div>
+
+                </article>
+
+            </div>
+            <p class="empty-state" id="emptyState" hidden>No matching parts found. Try changing your search or filters.</p>
+
+
+            <!-- REPAIR SERVICE -->
+            <div class="repair-banner">
+
+                <div class="repair-icon">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                </div>
+
+                <div>
+                    <h2>Need help fixing your device?</h2>
+
+                    <p>
+                        Book diagnosis only or diagnosis and repair. Spare-part purchase is optional.
+                    </p>
+                </div>
+
+                <button id="technicianButton" class="book-technician-entry" type="button">
+                    Book a Technician
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="footer-title">
+            Electronic Spare Parts Finder
+        </div>
+
+        <div class="footer-links">
+            <span>About Us</span>
+            <span>Contact</span>
+            <span>Suppliers</span>
+            <span>Repair Services</span>
+            <span>Privacy</span>
+        </div>
+
+        <p>
+            © 2026 Electronic Spare Parts Finder | Prototype
+        </p>
+
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js" defer></script>
+</body>
+</html>
